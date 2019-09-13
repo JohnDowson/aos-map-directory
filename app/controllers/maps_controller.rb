@@ -24,15 +24,15 @@ class MapsController < ApplicationController
   # POST /maps
   # POST /maps.json
   def create
-    @map = Map.new(map_params)
-
+    result = CreateMapService.call(map_params)
+    
     respond_to do |format|
-      if @map.save
-        format.html { redirect_to @map, notice: 'Map was successfully created.' }
-        format.json { render :show, status: :created, location: @map }
+      if result[:succes]
+        format.html { redirect_to result[:obj], notice: 'Map was successfully created.' }
+        format.json { render :show, status: :created, location: result[:obj] }
       else
         format.html { render :new }
-        format.json { render json: @map.errors, status: :unprocessable_entity }
+        format.json { render json: result[:obj].errors, status: :unprocessable_entity }
       end
     end
   end
