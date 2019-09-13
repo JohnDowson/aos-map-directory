@@ -1,0 +1,3 @@
+class CreateMapService < ApplicationService
+  
+end

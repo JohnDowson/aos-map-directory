@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @map.name %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @map.file.filename %>
+  <p>
+  <strong>size:</strong>
+  <%= "#{@map.file.byte_size} bytes" %>
+  </p>
+</p>
+
+<%= link_to 'Edit', edit_map_path(@map) %> |
+<%= link_to 'Back', maps_path %> |
+<%= link_to 'Destroy', @map, method: :delete, data: { confirm: 'Are you sure?' } %>
