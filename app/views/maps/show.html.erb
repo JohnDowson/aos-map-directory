@@ -9,6 +9,10 @@
   <strong>Filename:</strong>
   <%= @map.file.filename %>
   <p>
+  <%= @map.preview.inspect %>
+  </p>
+  <%= image_tag @map.preview.image if @map.preview.done? %>
+  <p>
   <strong>size:</strong>
   <%= "#{@map.file.byte_size} bytes" %>
   </p>
