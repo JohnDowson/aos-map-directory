@@ -16,6 +16,9 @@
   <strong>size:</strong>
   <%= "#{@map.file.byte_size} bytes" %>
   </p>
+  <p>
+  <%= @map.tag_list %>
+  </p>
 </p>
 
 <%= link_to 'Edit', edit_map_path(@map) %> |

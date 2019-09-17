@@ -4,7 +4,11 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.all
+    @maps = if params.has_key? :search
+              Map.search params[:search]
+            else
+              Map.all
+            end
   end
 
   # GET /maps/1
@@ -55,7 +59,7 @@ class MapsController < ApplicationController
   # DELETE /maps/1
   # DELETE /maps/1.json
   def destroy
-    @map.destroy
+    DestroyMapService.call(@map)
     respond_to do |format|
       format.html { redirect_to maps_url, notice: 'Map was successfully destroyed.' }
       format.json { head :no_content }
@@ -70,6 +74,6 @@ class MapsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def map_params
-      params.require(:map).permit(:name, :file)
+      params.require(:map).permit(:name, :file, :tag_list)
     end
 end

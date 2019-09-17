@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Maps</h1>
-
+<%= form_tag maps_path, method: 'get' do %>
+  <p>
+  <%= text_field_tag :search, params[:search] %> 
+  <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+<p <%= puts params.inspect %> >
 <table>
   <thead>
     <tr>
