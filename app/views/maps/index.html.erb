@@ -7,11 +7,11 @@
   <%= submit_tag "Search", name: nil %>
   </p>
 <% end %>
-<p <%= puts params.inspect %> >
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><%= @maps == [] ? 'No maps found' : 'Name' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

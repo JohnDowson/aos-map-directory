@@ -23,7 +23,7 @@
 
  <div class="field">
     <%= form.label :tags %>
-    <%= form.text_field :tag_list %>
+    <%= form.text_field :tag_list, value: @map.tag_list || nil %>
   </div>  
 
   <div class="actions">

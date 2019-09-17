@@ -15,6 +15,12 @@ class Map < ApplicationRecord
     end
   end
 
+  def self.find_by_tag(tagname)
+    tag = Tag.find_by name: tagname
+    return tag.maps if tag
+    []
+  end
+
   def tag_list
     tags.map(&:name).join(', ')
   end
@@ -23,6 +29,10 @@ class Map < ApplicationRecord
     self.tags = names.split(',').map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
+  end
+
+  def tag_list_add(tag)
+    self.tags << Tag.where(name: tag).first_or_create!
   end
 
 end

@@ -4,10 +4,11 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = if params.has_key? :search
-              Map.search params[:search]
+    @maps = if params.has_key?(:search)&& params[:search] != ""
+              # Map.search params[:search]
+               Map.find_by_tag params[:search]
             else
-              Map.all
+               Map.all
             end
   end
 

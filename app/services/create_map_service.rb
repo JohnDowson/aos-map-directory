@@ -6,6 +6,7 @@ class CreateMapService < ApplicationService
   
   def call  
     return failure_message unless map.valid?
+    map.tag_list_add map.name
     map.preview = Preview.new
     map.save!
     PreviewGeneratorWorker.perform_async(map_id: map.id)
