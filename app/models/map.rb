@@ -16,9 +16,18 @@ class Map < ApplicationRecord
   end
 
   def self.find_by_tag(tagname)
-    tag = Tag.find_by name: tagname
-    return tag.maps if tag
-    []
+    tags = Tag.where 'name LIKE ?', "%#{tagname}%"
+    if tags != []
+      maps = Set.new
+      tags.each do |t|
+        t.maps.each { |m| maps << m }
+      end
+      return maps
+    else
+      return []
+    end
+    # return tag.maps if tags
+    # []
   end
 
   def tag_list

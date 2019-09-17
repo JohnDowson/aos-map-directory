@@ -11,13 +11,15 @@
   <p>
   <%= @map.preview.inspect %>
   </p>
-  <%= image_tag @map.preview.image.variant(resize_to_limit: [400, 400]) if @map.preview.done? %>
+  <%= image_tag @map.preview.image.variant(resize_to_limit: [600, 600]) if @map.preview.done? %>
   <p>
   <strong>size:</strong>
   <%= "#{@map.file.byte_size} bytes" %>
   </p>
-  <p>
-  <%= @map.tag_list %>
+  <p><strong>Tags</strong>
+  <% @map.tags.each do |tag| %>
+    <div><%= link_to("#{tag.name}", controller: "maps", search: "#{tag.name}") %></div>
+  <% end %>
   </p>
 </p>
 
