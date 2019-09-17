@@ -1,31 +1,51 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Maps</h1>
-<%= form_tag maps_path, method: 'get' do %>
+
+<div>
   <p>
+  <%= form_tag maps_path, method: 'get' do %>
   <%= text_field_tag :search, params[:search] %> 
   <%= submit_tag "Search", name: nil %>
   </p>
 <% end %>
+</div>
 
-<table>
+<table class="primary">
   <thead>
     <tr>
-      <th><%= @maps == [] ? 'No maps found' : 'Name' %></th>
-      <th colspan="3"></th>
+      <b><%= @maps == [] ? 'No maps found' : 'Maps' %></b>
     </tr>
   </thead>
-
-  <tbody>
+	<tbody>
     <% @maps.each do |map| %>
-      <tr>
-        <td><%= map.name %></td>
-        <td><%= link_to 'Show', map %></td>
-        <td><%= link_to 'Edit', edit_map_path(map) %></td>
-        <td><%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+		<tr class="maprow">
+			<td class="maprow">
+				<table class="innert">
+					<tbody>
+						<tr>
+							<td>
+								
+      <%= map.name %>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								          <%= link_to 'Show', map %>
+          <%= link_to 'Edit', edit_map_path(map) %>
+          <%= link_to 'Destroy', map, method: :delete, data: { confirm: 'Are you sure?' } %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td class="maprow">
+				<%= image_tag map.preview.image.variant(resize_to_limit: [400, 400]) %>
+			</td>
+    </tr>
+  <% end %>
+	</tbody>
 </table>
 
 <br>

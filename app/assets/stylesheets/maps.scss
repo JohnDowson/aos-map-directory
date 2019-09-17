@@ -1,3 +1,26 @@
 // Place all the styles related to the Maps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+    /* width: 90%; */
+    text-align: center;
+}
+input {
+    padding: 10px;
+}
+/* table.primary*/table { 
+    width: 50%;
+    border: 2px solid;
+    margin-right: auto;
+    margin-left: auto;
+}
+.innert table {
+    border: hidden !important;
+}
+.maprow tr {
+    border: 2px solid red !important;
+    padding: 1px;
+}
+.maprow td {
+    border: none !important;
+}
