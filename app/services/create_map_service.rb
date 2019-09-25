@@ -6,6 +6,11 @@ class CreateMapService < ApplicationService
   
   def call  
     return failure_message unless map.valid?
+    if Map.exists?(filehash:map.file.checksum)
+      map.errors.add :file, :not_unique, message: "File is not unique"
+      return failure_message
+    end
+    map.filehash = map.file.checksum
     map.tag_list_add map.name
     map.preview = Preview.new
     map.save!
